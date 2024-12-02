@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Intercambio Navideño Mágico 🎁</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Decoraciones de fondo -->
+    <div id="snowfall"></div>
+
+    <div class="container animate__animated animate__fadeIn">
+        <!-- Decoraciones navideñas -->
+
+
+        <!-- Logo animado -->
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/placeholder.png') }}" alt="Logo navideño">
+        </div>
+
+        <h1 class="animate__animated animate__bounce">
+            <span class="christmas-tree">🎄</span>
+            Intercambio Navideño
+            <span class="gift">🎁</span>
+        </h1>
+
+        <!-- Tabs de navegación -->
+        <div class="tab-container">
+            <button class="tab active" onclick="showTab('register')">Registro Individual</button>
+            <button class="tab" onclick="showTab('group')">Crear Grupo</button>
+            <button class="tab" onclick="showTab('draw')">Iniciar Sorteo 🎲</button>
+        </div>
+
+        <!-- Formulario de registro individual -->
+        <div id="registerForm" class="form-container">
+            <form id="participantForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="name" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-key"></i>
+                    <input type="text" name="groupCode" placeholder="Código de grupo (opcional)">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-gift"></i>
+                    <textarea name="preferences" placeholder="Tus preferencias de regalo (opcional)"></textarea>
+                </div>
+                <button type="submit" class="animate__animated animate__pulse">
+                    ¡Quiero participar! 🎅
+                </button>
+            </form>
+        </div>
+
+        <!-- Formulario de creación de grupo -->
+        <div id="groupForm" class="form-container" style="display: none;">
+            <form id="createGroupForm" onsubmit="handleGroupSubmit(event)">
+                <div class="form-group">
+                    <i class="fas fa-users"></i>
+                    <input type="text" name="groupName" placeholder="Nombre del grupo" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-user-friends"></i>
+                    <input type="number" name="maxParticipants" placeholder="Número máximo de participantes" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-dollar-sign"></i>
+                    <input type="number" name="budget" placeholder="Presupuesto por regalo" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-calendar"></i>
+                    <input type="date" name="exchangeDate" required>
+                </div>
+                <button type="submit" class="animate__animated animate__pulse">
+                    Crear Grupo de Intercambio 🎄
+                </button>
+            </form>
+        </div>
+
+        <!-- Sección de sorteo -->
+        <div id="drawForm" class="form-container" style="display: none;">
+            <h2>Sorteo de Regalos Navideños 🎁</h2>
+            <div class="form-group">
+                <i class="fas fa-key"></i>
+                <input type="text" id="groupCodeForAssign" placeholder="Introduce el código del grupo" class="code-input">
+            </div>
+            <button onclick="handleAssignment()" class="animate__animated animate__pulse draw-button">
+                Realizar Sorteo 🎲
+            </button>
+
+            <!-- Resumen del grupo -->
+            <div id="groupSummary" class="summary-container" style="display: none;">
+                <h3>Resumen del Grupo</h3>
+                <div id="groupInfo"></div>
+                <div class="participants-info">
+                    <h4>Estado del Grupo</h4>
+                    <div id="participantsCount"></div>
+                    <div id="participantsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Efecto de nieve -->
+    <div class="snow-container"></div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
